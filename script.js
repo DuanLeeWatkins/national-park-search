@@ -4,17 +4,21 @@ const apiKey =
 const searchUrl =
     'https://developer.nps.gov/api/v1/parks'
 
+
+// This function formats the query parameters as a part of the url.
 function formatQueryParams(params) {
     const queryItems = Object.keys(params)
         .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
     return queryItems;
 }
 
+
+// This function displays the response data on the web page.
 function displayResults(responseJson, maxResults) {
     console.log(responseJson);
 
     $(`#results-list`).empty();
-
+    
     for (let i = 0; i < responseJson.data.length & i < maxResults; i++) {
 
         $('#results-list').append(
@@ -25,8 +29,12 @@ function displayResults(responseJson, maxResults) {
         );
     }
     $('#results').removeClass('hidden');
+
+    
 };
 
+
+// This function gets the park data from the api.
 function getParks(query, maxResults = 10) {
     const params = {
         stateCode: query
@@ -38,7 +46,7 @@ function getParks(query, maxResults = 10) {
     const url = searchUrl + '?' + queryString;
 
     console.log(url);
-
+    // Displays the api key in the request header.
     const options = {
         headers: new Headers({
             "X-Api-Key": apiKey
@@ -57,12 +65,13 @@ function getParks(query, maxResults = 10) {
         })
         .then(responseJson => displayResults(responseJson, maxResults))
         .catch(error => {
+            
             $('#error-message').text(`Something went wrong: ${error.message}`)
         });
 
 }
-
-function watchFrom() {
+// This function watches the form for user interaction.
+function watchForm() {
     $('form').submit(event => {
         event.preventDefault();
 
