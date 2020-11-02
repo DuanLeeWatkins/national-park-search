@@ -1,0 +1,6 @@
+Main Goal: to display a list of national parks in an area.
+[x] - Create a form that holds:
+    [x] - Textbox for state.
+    [x] - Textbox for number of results with a default of 10.
+    [x] - Search button
+[x] - Create a results and list section.
