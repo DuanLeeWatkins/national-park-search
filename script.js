@@ -6,8 +6,7 @@ const searchUrl =
 
 function formatQueryParams(params) {
     const queryItems = Object.keys(params)
-        .map(key => `${encodeURIComponent(key)}
-        =${encodeURIComponent(params[key])}`)
+        .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
     return queryItems;
 }
 
@@ -30,7 +29,7 @@ function displayResults(responseJson, maxResults) {
 
 function getParks(query, maxResults = 10) {
     const params = {
-        stateCode: query,
+        stateCode: query
         
 
     };
@@ -49,15 +48,16 @@ function getParks(query, maxResults = 10) {
 
 
     fetch(url, options)
-        .then(Response => {
-            if (Response.ok) {
-                return Response.json();
+        .then(response => {
+            if (response.ok)
+            {
+                return response.json();
             }
             throw new Error(response.statusText);
         })
         .then(responseJson => displayResults(responseJson, maxResults))
-        .catch(err => {
-            $('#error-message').text(`Something went wrong: ${err.message}`)
+        .catch(error => {
+            $('#error-message').text(`Something went wrong: ${error.message}`)
         });
 
 }
@@ -68,6 +68,7 @@ function watchFrom() {
 
         const searchState = $('#state').val();
         const maxResults = $('#max-results').val();
+        $('#state').val('');
         
         getParks(searchState, maxResults);
 
