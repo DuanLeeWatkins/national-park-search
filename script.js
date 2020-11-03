@@ -84,4 +84,4 @@ function watchForm() {
     });
 }
 
-$(watchFrom);
+$(watchForm);
