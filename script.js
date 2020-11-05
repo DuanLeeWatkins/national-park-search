@@ -69,7 +69,7 @@ function watchForm() {
   $("form").submit((event) => {
     event.preventDefault();
 
-    const searchState = $("#state").val();
+    const searchState = $("#search-state").val();
     const maxResults = $("#max-results").val();
     $("#state").val("");
 
