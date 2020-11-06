@@ -7,7 +7,7 @@ function formatQueryParams(params) {
   const queryItems = Object.keys(params).map(
     (key) => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`
   );
-  return queryItems;
+  return queryItems.join("&");
 }
 
 // This function displays the response data on the web page.
@@ -37,7 +37,7 @@ function getParks(query, maxResults = 10) {
     .split(",")
     .map((s) => s.trim())
     .map(encodeURIComponent)
-    .map((code) => `stateCode=${code}`)
+    //.map((code) => `stateCode=${code}`)
     .concat(`limit=${maxResults}`)
     .join("&");
 
