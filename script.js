@@ -31,13 +31,14 @@ function displayResults(responseJson, maxResults) {
 function getParks(query, maxResults = 10) {
   const params = {
     stateCode: query,
+    maxResults,
   };
 
   const q = query
     .split(",")
     .map((s) => s.trim())
-    .map(encodeURIComponent)
-    //.map((code) => `stateCode=${code}`)
+    //.map(encodeURIComponent)
+    .map((code) => `stateCode=${code}`)
     .concat(`limit=${maxResults}`)
     .join("&");
 
