@@ -40,6 +40,7 @@ function getParks(query, maxResults = 10) {
     //.map(encodeURIComponent)
     .map((code) => `stateCode=${code}`)
     .concat(`limit=${maxResults}`)
+    .concat(`api_key=${apiKey}`)
     .join("&");
 
   //const queryString = formatQueryParams(params);
@@ -47,13 +48,13 @@ function getParks(query, maxResults = 10) {
 
   console.log(url);
   // Displays the api key in the request header.
-  const options = {
-    headers: new Headers({
-      "X-Api-Key": apiKey,
-    }),
-  };
+  //const options = {
+  //headers: new Headers({
+  //"X-Api-Key": apiKey,
+  //}),
+  //};
 
-  fetch(url, options)
+  fetch(url)
     .then((response) => {
       if (response.ok) {
         return response.json();
